@@ -1,7 +1,7 @@
 <?php
 /**
  * @package OAuth2 Client
- * @author  Sebastian Knoth
+ * @author  advanced STORE GmbH
  * Date:    03.04.14
  */
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package OAuth2 Client
- * @author  Sebastian Knoth
+ * @author  advanced STORE GmbH
  * Date:    03.04.14
  */
 
@@ -564,7 +564,7 @@ class Oauth2Client {
 
 				return $this->access_token;
 
-			} catch(\Exception $exc) {
+			} catch(BasicException $exc) {
 
 				$this->clear();
 

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @package OAuth2 Client
+ * @author  advanced STORE GmbH
+ * Date:    03.04.14
+ */
+
 namespace AdvancedStore\Oauth2Client;
 
 use Illuminate\Support\ServiceProvider;

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package RTB-Backend
- * @author  Sebastian Knoth
+ * @package OAuth2 Client
+ * @author  advanced STORE GmbH
  * Date:    03.04.14
  */
 
