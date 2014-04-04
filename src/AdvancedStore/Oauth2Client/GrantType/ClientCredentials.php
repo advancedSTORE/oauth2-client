@@ -1,0 +1,31 @@
+<?php
+/**
+ * @package RTB-Backend
+ * @author  Sebastian Knoth
+ * Date:    03.04.14
+ */
+
+namespace AdvancedStore\Oauth2Client\GrantType;
+
+/**
+ * Client Credentials Parameters
+ */
+class ClientCredentials implements IGrantType
+{
+	/**
+	 * Defines the Grant Type
+	 *
+	 * @var string  Defaults to 'client_credentials'.
+	 */
+	const GRANT_TYPE = 'client_credentials';
+
+	/**
+	 * Adds a specific Handling of the parameters
+	 *
+	 * @return array of Specific parameters to be sent.
+	 * @param  mixed  $parameters the parameters array (passed by reference)
+	 */
+	public function validateParameters(&$parameters)
+	{
+	}
+}

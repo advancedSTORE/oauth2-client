@@ -30,7 +30,7 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->registerOauth2Client();
 	}
 
 	/**
@@ -41,6 +41,18 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array();
+	}
+
+	protected function registerOauth2Client() {
+
+		$this->app['as.oauth2.client'] = $this->app->share(function($app) {
+
+			$config = $app['config'];
+
+			return new Oauth2Client( $config->get('oauth2-client::client.id'), $config->get('oauth2-client::client.secret') );
+
+		});
+
 	}
 
 }
