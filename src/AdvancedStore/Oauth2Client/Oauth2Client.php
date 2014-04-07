@@ -56,14 +56,14 @@ class Oauth2Client {
 	 *
 	 * @var string
 	 */
-	protected $client_id = null;
+	protected $client_id = "";
 
 	/**
 	 * Client Secret
 	 *
 	 * @var string
 	 */
-	protected $client_secret = null;
+	protected $client_secret = "";
 
 	/**
 	 * Client Authentication method
@@ -77,7 +77,7 @@ class Oauth2Client {
 	 *
 	 * @var string
 	 */
-	protected $access_token = null;
+	protected $access_token = "";
 
 	/**
 	 * Access Token Type
@@ -91,14 +91,14 @@ class Oauth2Client {
 	 *
 	 * @var string
 	 */
-	protected $access_token_secret = null;
+	protected $access_token_secret = "";
 
 	/**
 	 * Access Token crypt algorithm
 	 *
 	 * @var string
 	 */
-	protected $access_token_algorithm = null;
+	protected $access_token_algorithm = "";
 
 	/**
 	 * Access Token Parameter name
@@ -112,7 +112,7 @@ class Oauth2Client {
 	 *
 	 * @var string  Defaults to .
 	 */
-	protected $certificate_file = null;
+	protected $certificate_file = "";
 
 	/**
 	 * cURL options
@@ -126,22 +126,38 @@ class Oauth2Client {
 	 *
 	 * @var string
 	 */
-	protected $token_endpoint = null;
-
-	protected $refresh_token = null;
-
-	protected $sessionName = 'accessinfo';
-
-	public $info = null;
+	protected $token_endpoint = "";
 
 	/**
-	 * Construct
+	 * Refresh-Token
+	 *
+	 * @var string
+	 */
+	protected $refresh_token = "";
+
+	/**
+	 * Session-Name
+	 *
+	 * @var string
+	 */
+	protected $sessionName = 'accessinfo';
+
+	/**
+	 * Information about connections/results
+	 *
+	 * @var string
+	 */
+	protected $info = "";
+
+	/**
+	 * Constructor
 	 *
 	 * @param string $client_id Client ID
 	 * @param string $client_secret Client Secret
 	 * @param int    $client_auth (AUTH_TYPE_URI, AUTH_TYPE_AUTHORIZATION_BASIC, AUTH_TYPE_FORM)
 	 * @param string $certificate_file Indicates if we want to use a certificate file to trust the server. Optional, defaults to null.
-	 * @return void
+	 * @throws Exceptions\BasicException
+	 * @throws Exceptions\InvalidArgumentException
 	 */
 	public function __construct($client_id = null, $client_secret = null, $client_auth = self::AUTH_TYPE_URI, $certificate_file = null) {
 
@@ -158,7 +174,9 @@ class Oauth2Client {
 		$this->certificate_file = $certificate_file;
 
 		if (!empty($this->certificate_file)  && !is_file($this->certificate_file)) {
+
 			throw new InvalidArgumentException('The certificate file was not found', InvalidArgumentException::CERTIFICATE_NOT_FOUND);
+
 		}
 
 		$this->loadDataBySession();
@@ -200,6 +218,7 @@ class Oauth2Client {
 			'client_id'     => $this->client_id,
 			'redirect_uri'  => $redirect_uri
 		), $extra_parameters);
+
 		return $auth_endpoint . '?' . http_build_query($parameters, null, '&');
 	}
 
@@ -209,13 +228,15 @@ class Oauth2Client {
 	 * @param string $token_endpoint    Url of the token endpoint
 	 * @param int    $grant_type        Grant Type ('authorization_code', 'password', 'client_credentials', 'refresh_token', or a custom code (@see GrantType Classes)
 	 * @param array  $parameters        Array sent to the server (depend on which grant type you're using)
+	 * @throws Exceptions\BasicException
+	 * @throws Exceptions\InvalidArgumentException
 	 * @return array Array of parameters required by the grant_type (CF SPEC)
 	 */
 	public function fetchAccessToken($token_endpoint, $grant_type, array $parameters) {
 
 		if( $this->hasValidAccessToken() ) {
 
-			return;
+			return $this->access_token;
 
 		}
 
@@ -334,14 +355,17 @@ class Oauth2Client {
 	}
 
 	/**
-	 * Fetch a protected ressource
+	 * Fetch a protected resource
 	 *
-	 * @param string $protected_ressource_url Protected resource URL
-	 * @param array  $parameters Array of parameters
-	 * @param string $http_method HTTP Method to use (POST, PUT, GET, HEAD, DELETE)
-	 * @param array  $http_headers HTTP headers
-	 * @param int    $form_content_type HTTP form content type to use
+	 * @param        $protected_resource_url
+	 * @param array  $parameters
+	 * @param string $http_method
+	 * @param array  $http_headers
+	 * @param int    $form_content_type
+	 *
 	 * @return array
+	 * @throws Exceptions\BasicException
+	 * @throws Exceptions\InvalidArgumentException
 	 */
 	public function fetch($protected_resource_url, $parameters = array(), $http_method = self::HTTP_METHOD_GET, array $http_headers = array(), $form_content_type = self::HTTP_FORM_CONTENT_TYPE_MULTIPART) {
 
@@ -371,6 +395,7 @@ class Oauth2Client {
 					break;
 			}
 		}
+
 		return $this->executeRequest($protected_resource_url, $parameters, $http_method, $http_headers, $form_content_type);
 	}
 
@@ -414,12 +439,14 @@ class Oauth2Client {
 	/**
 	 * Execute a request (with curl)
 	 *
-	 * @param string $url URL
-	 * @param mixed  $parameters Array of parameters
-	 * @param string $http_method HTTP Method
-	 * @param array  $http_headers HTTP Headers
-	 * @param int    $form_content_type HTTP form content type to use
+	 * @param        $url
+	 * @param array  $parameters
+	 * @param string $http_method
+	 * @param array  $http_headers
+	 * @param int    $form_content_type
+	 *
 	 * @return array
+	 * @throws Exceptions\BasicException
 	 */
 	private function executeRequest($url, $parameters = array(), $http_method = self::HTTP_METHOD_GET, array $http_headers = null, $form_content_type = self::HTTP_FORM_CONTENT_TYPE_MULTIPART) {
 
@@ -650,6 +677,12 @@ class Oauth2Client {
 		unset( $_SESSION[$this->sessionName] );
 
 		unset( $_SESSION['tokend'] );
+
+	}
+
+	public function getInfo() {
+
+		return $this->info;
 
 	}
 
