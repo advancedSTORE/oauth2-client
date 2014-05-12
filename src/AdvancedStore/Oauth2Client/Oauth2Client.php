@@ -666,6 +666,12 @@ class Oauth2Client {
 
 	}
 
+	public function flush() {
+
+		$this->clear();
+
+	}
+
 	protected function clear() {
 
 		$this->access_token = null;
