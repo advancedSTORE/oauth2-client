@@ -1,6 +1,7 @@
 {
     "name": "advanced-store/oauth2-client",
-    "description": "",
+    "description": "Oauth2-Client for simple connect with Oauth2-Server (3rd Party or Own-Aplications)",
+    "keywords": ["laravel", "oauth", "oauth2"],
     "authors": [
         {
             "name": "advanced STORE GmbH",
