@@ -12,14 +12,23 @@
 </p>
 
 <pre>
-<code>
-    <b>"advanced-store/oauth2-client": "dev-master"</b>
-</code>
+    <code>
+        <b>"advanced-store/oauth2-client": "dev-master"</b>
+    </code>
 </pre>
 
 <p>
-
+   After adding this line, run the following command:
 </p>
+
+<pre>
+    <code>
+        <b>composer install</b>
+        or
+        <b>composer update</b>
+    </code>
+</pre>
+
 
 
 <h2>2. Configuration</h2>
