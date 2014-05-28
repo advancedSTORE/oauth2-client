@@ -12,7 +12,7 @@
     <br />
     <pre>
         <code>
-            <b>"advanced-store/oauth2-client": "dev-master"</b>
+<b>"advanced-store/oauth2-client": "dev-master"</b>
         </code>
     </pre>
 </p>
