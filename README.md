@@ -10,11 +10,11 @@
 <p>
     Update your composer.json "require"-Section with this line:
     <br />
-    <pre>
         <code>
-<b>"advanced-store/oauth2-client": "dev-master"</b>
+<p>
+    <b>"advanced-store/oauth2-client": "dev-master"</b>
+</p>
         </code>
-    </pre>
 </p>
 
 <p>
