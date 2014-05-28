@@ -10,14 +10,22 @@
 <p>
     Update your composer.json "require"-Section with this line:
     <br />
-    <b>"advanced-store/oauth2-client": "dev-master"</b>
+    <pre>
+        <code>
+            <b>"advanced-store/oauth2-client": "dev-master"</b>
+        </code>
+    </pre>
+</p>
+
+<p>
+
 </p>
 
 
 <h2>2. Configuration</h2>
 
 
-<h2>3.</h2>
+<h2>3. Constants</h2>
 
 <h4>Auth methods</h4>
 <ul>
