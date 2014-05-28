@@ -9,13 +9,13 @@
 
 <p>
     Update your composer.json "require"-Section with this line:
-    <br />
-        <code>
-<p>
+</p>
+
+<pre>
+<code>
     <b>"advanced-store/oauth2-client": "dev-master"</b>
-</p>
-        </code>
-</p>
+</code>
+</pre>
 
 <p>
 
