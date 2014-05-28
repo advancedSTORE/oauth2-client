@@ -46,11 +46,11 @@
     <br><br>
     Here you have to add/modify the values for your purpose.
     <br>
-    <b>[client.id]       - Client-ID of your Application</b>
+    [client.id]       - Client-ID of your Application
     <br>
-    <b>[client.secret]   - Client-Secret of your Application</b>
+    [client.secret]   - Client-Secret of your Application
     <br>
-    <b>[scopes]          - Scopes for your Application (comma separated)</b>
+    [scopes]          - Scopes for your Application (comma separated)
 
 </p>
 
