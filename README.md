@@ -37,39 +37,56 @@
 
 <pre>
     <code>
-        <b>php artisan config:publish advanced-store/oauth2-client</b>
+    <b>php artisan config:publish advanced-store/oauth2-client</b>
     </code>
 </pre>
 
 <p>
     The Config-File path is <code>app/config/advanced-store/oauth2-client/config.php</code>
-    <br>
-
+    <br><br>
     Here you have to add/modify the values for your purpose.
-
-    <code>[client.id]       - Client-ID of your Application</code>
     <br>
-    <code>[client.secret]   - Client-Secret of your Application</code>
+    <b>[client.id]       - Client-ID of your Application</b>
     <br>
+    <b>[client.secret]   - Client-Secret of your Application</b>
     <br>
-    <code>[scopes]          - Scopes for your Application (comma separated)</code>
+    <b>[scopes]          - Scopes for your Application (comma separated)</b>
 
 </p>
 
 <p>
     After modifying the Package-Config, update the <code>app/config/app.php</code>
     <br>
-    Add this line to the <b>providers section</b>:<br>
-    <code><b>'AdvancedStore\Oauth2Client\Oauth2ClientServiceProvider'</b></code>
+    Modify your <b>providers and aliases</b> section, with your preferred alias:<br><br>
 
-    <br><br>
-    and
-    <code><b>'OAuth2Client'	=> 'AdvancedStore\Oauth2Client\Facades\Oauth2ClientFacade'</b></code>
+    <code><b>'providers' => array('AdvancedStore\Oauth2Client\Oauth2ClientServiceProvider')</b></code>
     <br>
-    to your <b>aliases section</b>, with your preferred alias.
+    <code><b>'aliases' => array('OAuth2Client'	=> 'AdvancedStore\Oauth2Client\Facades\Oauth2ClientFacade')</b></code>
 </p>
 
 <h2>3. Examples</h2>
+
+<h3>Fetch Access-Token</h3>
+<pre>
+    <code>
+    <b>
+    OAuth2Client::fetchAccessToken('http://3rd.party.com/api/access_token', 'password', array(
+        'username'	=> $credentials['username'],
+        'password'	=> $credentials['password'],
+        'scope'		=> Config::get('oauth2-client::scopes'),
+    ));
+    </b>
+    </code>
+</pre>
+
+<h3>Requesting a OAuth2 - Restricted Resource/URL</h3>
+<pre>
+    <code>
+    <b>
+    $result = OAuth2Client::fetch('http://3rd.party.com/api/restriced/resource');
+    </b>
+    </code>
+</pre>
 
 <h2>4. Constants</h2>
 
