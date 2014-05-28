@@ -8,7 +8,7 @@
 <h3>via Composer</h3>
 
 <p>
-    Update your composer.json "require"-Section with this line:
+    Update your <code>composer.json</code> "require"-Section with this line:
 </p>
 
 <pre>
@@ -25,11 +25,19 @@
     <code>
         <b>composer install</b>
         or
-        <b>composer update</b>
+        <b>php composer.phar install</b>
     </code>
 </pre>
 
+or
 
+<pre>
+    <code>
+        <b>composer update</b>
+        or
+        <b>php composer.phar update</b>
+    </code>
+</pre>
 
 <h2>2. Configuration</h2>
 
