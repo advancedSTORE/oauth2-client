@@ -1,10 +1,17 @@
-<h1>OAuth2 <li>Client</h1>
-
-        <p>
-            This Package can be used to connect to an OAuth2-Service and fetch OAuth2 restricted resources.
-        </p>
+<h1>OAuth2 - Client</h1>
+<p>
+    This Package can be used to connect to an OAuth2-Service and fetch OAuth2 restricted resources.
+</p>
 
 <h2>1. Installation</h2>
+
+<h3>via Composer</h3>
+
+<p>
+    Update your composer.json "require"-Section with this line:
+    <br />
+    <b>"advanced-store/oauth2-client": "dev-master"</b>
+</p>
 
 
 <h2>2. Configuration</h2>
