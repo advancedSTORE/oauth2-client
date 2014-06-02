@@ -369,7 +369,14 @@ class Oauth2Client {
 	 */
 	public function fetch($protected_resource_url, $parameters = array(), $http_method = self::HTTP_METHOD_GET, array $http_headers = array(), $form_content_type = self::HTTP_FORM_CONTENT_TYPE_MULTIPART) {
 
+		if( ( $this->access_token = $this->getAccessToken() ) === null ) {
+
+			return null;
+
+		}
+
 		if ($this->access_token) {
+
 			switch ($this->access_token_type) {
 				case self::ACCESS_TOKEN_URI:
 					if (is_array($parameters)) {
@@ -394,6 +401,7 @@ class Oauth2Client {
 					throw new BasicException('Unknown access token type.', BasicException::INVALID_ACCESS_TOKEN_TYPE);
 					break;
 			}
+
 		}
 
 		return $this->executeRequest($protected_resource_url, $parameters, $http_method, $http_headers, $form_content_type);
@@ -551,7 +559,9 @@ class Oauth2Client {
 	private function convertToCamelCase($grant_type) {
 
 		$parts = explode('_', $grant_type);
-		array_walk($parts, function(&$item) { $item = ucfirst($item);});
+		array_walk($parts, function(&$item) {
+			$item = ucfirst($item);
+		});
 		return implode('', $parts);
 
 	}
