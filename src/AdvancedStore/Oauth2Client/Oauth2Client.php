@@ -507,7 +507,11 @@ class Oauth2Client {
 		}
 
 		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_PORT, $_SERVER['SERVER_PORT']);
+		
 		curl_setopt_array($ch, $curl_options);
+
 		// https handling
 		if (!empty($this->certificate_file)) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
