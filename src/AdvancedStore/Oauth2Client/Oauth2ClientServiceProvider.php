@@ -12,6 +12,8 @@ use Illuminate\Support\ServiceProvider;
 
 class Oauth2ClientServiceProvider extends ServiceProvider {
 
+	const PACKAGE_NAME = 'advanced-store/oauth2-client';
+
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -26,7 +28,10 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('advanced-store/oauth2-client');
+		$this->mergeConfigFrom(
+            __DIR__.'../config/config.php', self::PACKAGE_NAME
+        );
+
 	}
 
 	/**
