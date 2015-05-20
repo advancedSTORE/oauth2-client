@@ -31,9 +31,9 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 		$this->mergeConfigFrom(
             __DIR__.'../config/config.php', self::PACKAGE_NAME
         );
-        $this->publishes([
+       /* $this->publishes([
            __DIR__.'../Oauth2Client/'
-        ], self::PACKAGE_NAME);
+        ], self::PACKAGE_NAME);*/
 
 
 	}
@@ -60,7 +60,7 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 
 	protected function registerOauth2Client() {
 
-		$this->app['as.oauth2.client'] = $this->app->share(function($app) {
+		$this->app->bindShared('as.oauth2.client',function($app) {
 
 			$config = $app['config'];
 
