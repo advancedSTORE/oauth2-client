@@ -28,12 +28,9 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->mergeConfigFrom(
-            __DIR__.'../config/config.php', self::PACKAGE_NAME
-        );
-       /* $this->publishes([
-           __DIR__.'../Oauth2Client/'
-        ], self::PACKAGE_NAME);*/
+		$this->publishes([
+			__DIR__.'/../../config/oAuth2ClientConfig.php' => config_path('oAuth2ClientConfig.php')
+		]);
 
 
 	}
@@ -64,7 +61,7 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 
 			$config = $app['config'];
 
-			return new Oauth2Client( $config->get('oauth2-client::client.id'), $config->get('oauth2-client::client.secret') );
+			return new Oauth2Client( $config->get('oAuth2ClientConfig.client.id'), $config->get('oAuth2ClientConfig.client.secret') );
 
 		});
 
