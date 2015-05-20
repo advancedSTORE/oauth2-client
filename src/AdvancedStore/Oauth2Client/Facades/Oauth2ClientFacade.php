@@ -19,6 +19,6 @@ class Oauth2ClientFacade extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'as.oauth2.client';
+		return 'asOauth2Client';
 	}
 }

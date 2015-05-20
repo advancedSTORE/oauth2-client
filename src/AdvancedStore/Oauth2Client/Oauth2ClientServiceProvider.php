@@ -60,7 +60,7 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 
 	protected function registerOauth2Client() {
 
-		$this->app->bindShared('as.oauth2.client',function($app) {
+		$this->app->bindShared('asOauth2Client',function($app) {
 
 			$config = $app['config'];
 
