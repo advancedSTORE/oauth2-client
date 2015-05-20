@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
 
 class Oauth2ClientServiceProvider extends ServiceProvider {
 
-	const PACKAGE_NAME = 'advanced-store/oauth2-client';
+	const PACKAGE_NAME = 'oauth2-client';
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -33,7 +33,7 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
         );
         $this->publishes([
            __DIR__.'../Oauth2Client/'
-        ]);
+        ], self::PACKAGE_NAME);
 
 
 	}
