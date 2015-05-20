@@ -31,6 +31,10 @@ class Oauth2ClientServiceProvider extends ServiceProvider {
 		$this->mergeConfigFrom(
             __DIR__.'../config/config.php', self::PACKAGE_NAME
         );
+        $this->publishes([
+           __DIR__.'../Oauth2Client/'
+        ]);
+
 
 	}
 
