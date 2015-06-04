@@ -574,7 +574,7 @@ class Oauth2Client {
 
 		if( ( $information = $this->hasAccessInformation() ) !== false ) {
 
-			if( $information['expires'] > time() ) {
+			if( $information['expires_in'] > 0 ) {
 
 				return $information['access_token'];
 
