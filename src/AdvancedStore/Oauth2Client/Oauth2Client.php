@@ -165,7 +165,7 @@ class Oauth2Client {
 			session_start();
 
 		if (!extension_loaded('curl')) {
-			throw new BasicException('The PHP exention curl must be installed to use this library.', BasicException::CURL_NOT_FOUND);
+			throw new BasicException('The PHP extension curl must be installed to use this library.', BasicException::CURL_NOT_FOUND);
 		}
 
 		$this->client_id     = $client_id;
